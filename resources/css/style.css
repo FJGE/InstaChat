@@ -19,99 +19,136 @@
     box-sizing: border-box;
 }
 
+h1   {font-size: 48px;} /* 36 ~ 40 */
+h2   {font-size: 36px;} /* 28 ~ 32 */
+h3   {font-size: 32px;} /* 20 ~ 24 */
+p, a {font-size: 22px;} /* 16 ~ 20 */
+span {color: var(--primary-color);}
+a {text-decoration: none; font-weight: bold;}
+
 body {
     font-family: 'Urbanist';
     background-color: var(--dark-gray);
 }
 
-span {color: var(--primary-color);}
-h1 {font-size: 3.5em;}
-h2 {font-size: 2.7em;}
-p {font-size: 1.25em;}
-li a {font-size: 1.25em; text-decoration: none; font-weight: bold;}
-ul {list-style: none;}
-.w-50 {width: 48%;}
+body#home {
+    background-color: var(--white);
+}
 
-.nav-container {
+.container {
     max-width: 1400px;
     margin: auto;
     padding: 30px;
 }
 
-.container {
-    max-width: 1160px;
-    margin: auto;
-    padding: 30px;
-}
-/* ------------------------------- Pagina Index ------------------------------- */
-#home {
-    background-color: var(--white);
+.grid-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
 }
 
-/* ------------------------------ Navigation Menu ----------------------------- */
-#nav-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--white);
-}
-
-#nav-home ul {
-    margin-top: 1em;
-    align-items: center;
-    display: flex;
-    gap: 3em;
-}
-
-#nav-home ul li {
-    text-align: center;
-}
-
-#nav-home ul li a {
-    color: var(--primary-color);
-    cursor: pointer;
-}
-
-/* ------------------------------ Hero Section --------------------------------- */
+/* ----------------------------- Home Page ------------------------------ */
 #hero {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/hero-bg.jpg');
-    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imgs/hero-bg.jpg");
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas: 
+    "nav"
+    "content"
+    ;
 }
 
-.section-content {
+#hero nav {
+    grid-area: nav;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#hero nav ul li a {
+    color: var(--primary-color);
+    display: none;
+}
+
+#hero section {
+    grid-area: content;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 80px;
-    width: 400px;
-    height: 450px;
-    padding: 30px;
-    margin: 20px;
-    margin-top: 130px;
-    border-radius: 30px;
+    padding: 20px 0 150px 0;
+    width: 70%;
     background-color: var(--white);
-}
-
-.subtitle {
-    background-color: var(--light-gray);
-    padding: 40px 20px;
-    width: 350px;
     border-radius: 30px;
 }
 
-.section-content a {
-    width: 200px;
-    padding: 15px;
-    border-radius: 30px 30px 10px 30px;
+#hero section p {
+    background-color: var(--light-gray);
+    position: relative;
+    top: 80px;
+    padding: 20px 30px;
+    border-radius: 30px;
+}
+
+#hero section a {
+    position: relative;
+    top: 170px;
+    padding: 10px 20px;
+    border-radius: 25px 25px 10px 25px;
     background-color: var(--primary-color);
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-top: 15px;
-    font-weight: bold;
     color: var(--white);
-    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+}
+
+#hero #logo {
+    background-color: var(--white);
+    padding: 5px 20px;
+    border-radius: 25px 25px 10px 25px;
+}
+
+#hero #scroll-icon {
+    display: none;
+}
+
+#about {
+    margin: 100px auto;
+    text-align: center;
+}
+
+#about div {
+    margin-bottom: 50px;
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+@media(min-width: 451px) {
+    #hero {height: 100vh;}
+    #hero #logo {display: none;}
+    #hero nav {justify-content: center;}
+    #hero nav img {display: none;}
+    #hero nav ul li a {display: inline-block;}
+
+    #hero nav ul {
+        display: flex;
+        gap: 100px;
+    }
+
+    #about div {text-align: left;}
+    #about div h2 {margin-bottom: 50px;}
+
+    .grid-columns {grid-template-columns: repeat(2, 48%);}
 }

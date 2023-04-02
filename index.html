@@ -9,42 +9,48 @@
     </head>
     <body id="home">
         <header id="hero">
-            <nav class="nav-container" id="nav-home">
-                <h2 class="logo">Insta<span>Chat</span></h2>
+            <nav class="container">
+                <h3 id="logo">Insta<span>Chat</span></h3>
 
-                <ul>
-                    <li><a href="./views/login.php">Iniciar Sesión</a></li>
-                    <li><a href="./views/register.php">Registrarse</a></li>
-                    <li><a href="">Acerca de</a></li>
+                <ul class="nav-list">
+                    <li><a href="#">Iniciar Sesión</a></li>
+                    <li><a href="#">Registrarse</a></li>
+                    <li><a href="#">Acerca de</a></li>
                 </ul>
+
+                <img src="./resources/imgs/hamburguer-menu.svg" alt="Icono menu hamburguesa" width="40px" />
             </nav>
 
-            <section class="section-content">
+            <section>
                 <h1>Insta<span>Chat</span></h1>
-                <p class="subtitle">
-                    Conecta con amigos y <br>
-                    familiares de manera <br>
+                <p>
+                    Conecta con amigos y <br />
+                    familiares de manera <br />
                     instantánea.
                 </p>
-
                 <a href="./views/register.php">Registrate</a>
             </section>
 
-            <img class="mouse-scroll" src="./resources/imgs/mouse_scroll.svg" alt="Icono del menu" width="50px" />
+            <img id="scroll-icon" src="./resources/imgs/mouse_scroll.svg" alt="Icono del menu" width="50px" />
         </header>
 
-        <section id="about" class="container">
-            <div class="about-text">
-                <h2>Sobre InstaChat</h2>
-                <p>
-                    ¿Estás buscando una forma nueva de conectarte con personas de todo el mundo? ¡Mira InstaChat! Nuestra red social te permite conectarte con personas en un ambiente seguro y divertido.
-                </p>
-            </div>
-            <img src="./resources/imgs/about-img.jpg" alt="Chica chateando con el movil">
-        </section>
+        <div class="container">
+            <section id="about" class="grid-columns">
+                <div>
+                    <h2>Sobre InstaChat</h2>
+                    <p>
+                        InstaChat es una red social que permite a los usuarios conectarse con personas de todo el mundo en un ambiente seguro y divertido.<br><br>
+                        Al igual que otras redes sociales, InstaChat ofrece a sus usuarios la posibilidad de crear un perfil y seguir a otros usuarios para ver sus publicaciones.<br><br>
+                        Sin embargo, lo que hace que InstaChat sea única es su enfoque en la seguridad y la privacidad de los usuarios.
+                    </p>
+                </div>
+    
+                <img src="./resources/imgs/about-img.jpg" width="100%" alt="Chica chateando con el movil" />
+            </section>
+        </div>
 
         <footer>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At, sunt. Ullam tenetur esse numquam nihil aperiam nobis, velit ea cum facilis eveniet quas iusto sunt cupiditate voluptatum explicabo repellendus necessitatibus.
+            <p>&COPY; Francisco Javier Gañan Escobar</p>
         </footer>
     </body>
 </html>

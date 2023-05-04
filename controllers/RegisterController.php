@@ -13,9 +13,11 @@
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
     if (in_array($profilePicture['type'], $allowedTypes)) {
-        $profilePicturePath = '../resources/imgs/user-profiles/' . $profilePicture['name'];
+        $profilePicturePath = "../resources/imgs/user-profiles/{$profilePicture['name']}";
         move_uploaded_file($profilePicture['tmp_name'], $profilePicturePath);
-    } else {
+    } 
+    
+    else {
         createCookie("error", "La imagen de perfil debe ser en formato JPG, PNG o GIF", "../views/register.php");
     }
 
@@ -27,10 +29,16 @@
 
         if($newUser->getPassword() !== $newUser->getCPassword()) {
             createCookie("error", "Las contraseñas no coinciden", "../views/register.php");
-        } else {
+        }
+        
+        else {
             $query_insert = "INSERT INTO users (username, email, password, cpassword, profile_picture) VALUES ('$username', '$email', '$password', '$cPassword', '$profilePicturePath')";
             if (mysqli_query($connection, $query_insert)) {
                 header("Location: ../views/login.php");
+            } 
+            
+            else {
+                createCookie("error", "No se pudo insertar el usuario en la base de datos", "../views/register.php");
             }
             mysqli_close($connection);
         }

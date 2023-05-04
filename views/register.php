@@ -19,7 +19,7 @@
 
         <div class="container">
             <section class="grid-columns">
-                <form action="../controllers/RegisterController.php" method="POST">
+                <form action="../controllers/RegisterController.php" method="POST" enctype="multipart/form-data">
                     <label for="profile-picture">Foto de perfil:</label>
                     <input type="file" id="profile-picture" name="profile-picture">
 

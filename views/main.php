@@ -27,8 +27,9 @@
                 $user = $getUser->fetch_assoc();
                 $username = $user['username'];
                 $userID = $user['id'];
+				$userPhoto = $user['profile_picture'];
 
-                echo 'Bienvenido, '.$username;
+                echo 'Bienvenido, '.$userPhoto.$username;
             }
 
             //Mostrar nombre de los amigos del usuario

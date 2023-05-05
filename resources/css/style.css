@@ -20,16 +20,19 @@
     box-sizing: border-box;
 }
 
-h1   {font-size: 48px;} /* 36 ~ 40 */
-h2   {font-size: 36px;} /* 28 ~ 32 */
-h3   {font-size: 32px;} /* 20 ~ 24 */
-p, a {font-size: 22px;} /* 16 ~ 20 */
+h1   {font-size: 48px;}
+h2   {font-size: 36px;}
+h3   {font-size: 32px;}
+p, a {font-size: 22px;}
 span {color: var(--primary-color);}
 ul {list-style: none;}
 a {
     text-decoration: none;
     font-weight: bold; color:
     var(--primary-color);
+}
+a:hover {
+    color: var(--light-gray);
 }
 
 body {
@@ -55,6 +58,10 @@ body#home {
     justify-content: space-between;
 }
 
+.smallAvatar img, .profileAvatar img {
+    border-radius: 50%;
+    width: 100%;
+}
 /* ----------------------------- Home Page ------------------------------ */
 #hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imgs/hero-bg.jpg");
@@ -77,10 +84,6 @@ body#home {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-#hero nav a:hover {
-    color: var(--light-gray);
 }
 
 #hero .nav-list {display: none;}
@@ -197,23 +200,17 @@ input[type="file"] {
 }
 
 /* ----------------------------- Main Page ------------------------------ */
-#searchForm {
-    position: relative;
-    width: 90%;
+.smallAvatar {
+    width: 65px;
+    height: 65px;
 }
 
-#searchForm button {
-    position: absolute;
-    background-color: transparent;
-    border: 0px solid transparent;
-    right: 10px;
-    top: 10px;
+/* ----------------------------- Profile Page ------------------------------ */
+.profileAvatar {
+    width: 200px;
+    height: 200px;
 }
 
-#searchForm button span {
-    font-weight: bold;
-    color: var(--black);
-}
 
 @media(min-width: 720px) {
     #hero {height: 100vh;}

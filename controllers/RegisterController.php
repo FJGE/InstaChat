@@ -15,7 +15,7 @@
     if (in_array($profilePicture['type'], $allowedTypes)) {
         $profilePicturePath = "../resources/imgs/user-profiles/{$profilePicture['name']}";
         move_uploaded_file($profilePicture['tmp_name'], $profilePicturePath);
-    } 
+    }
     
     else {
         createCookie("error", "La imagen de perfil debe ser en formato JPG, PNG o GIF", "../views/register.php");

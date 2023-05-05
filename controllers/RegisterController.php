@@ -8,7 +8,7 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cPassword = $_POST['cpassword'];
-    $newUser = new User($username, $email, $password, $cPassword);
+    $newUser = new User($username, $email, $password, $cPassword, $profilePicture);
 
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 

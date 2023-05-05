@@ -14,7 +14,7 @@
                 $getUser = $connection->query('SELECT * FROM `users` WHERE email = "'.$email.'" AND password = "'.$password.'"');
             
                 if($getUser->fetch_all()) {
-                    $User = new User($username, $email, $password, $cPassword);
+                    $User = new User($username, $email, $password, $cPassword, $profilePhoto);
                     $_SESSION['email'] = $User->getEmail();
                     header("Location: ../views/main.php");
                 }

@@ -2,6 +2,7 @@
     include_once '../config/connection_db.php';
     include_once '../models/User.php';
     session_start();
+    $email = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -20,66 +21,20 @@
     <main class="grid-columns">
         <div>
             <?php
-            //Mostrar nombre del usuario que ha iniciado sesión
-            if(isset($_SESSION['email'])) {
-                $email = $_SESSION['email'];
-                $getUser = $connection->query('SELECT * FROM `users` WHERE email = "'.$email.'"');
-                $user = $getUser->fetch_assoc();
-                $username = $user['username'];
-                $userID = $user['id'];
-				$userPhoto = $user['profile_picture'];
+                //Mostrar nombre del usuario que ha iniciado sesión
+                if(isset($email)) {
+                    $obtainUser = $connection->query('SELECT * FROM `users` WHERE `email` = "' . $email . '"');
 
-                echo "<img src='$userPhoto'>".$username;
-            }
+                    if($userData = $obtainUser->fetch_all(MYSQLI_ASSOC)) {
+                        $user = new User($userData[0]['username'], $userData[0]['email'], $userData[0]['password'], $userData[0]['cpassword'], $userData[0]['profile_picture']);
 
-            //Mostrar nombre de los amigos del usuario
-            echo "<br><br>Amigos:<br>";
-            
-            $getUserFriends = $connection->query("SELECT username FROM users INNER JOIN friends ON (users.ID = friends.user_2) WHERE friends.user_1 = $userID");
-            $rows = $getUserFriends->fetch_all(MYSQLI_ASSOC);
-            
-            if(!empty($rows)) {
-                foreach ($rows as $row) {
-                    echo $row["username"] . "<br>";
-                }
-            }
-            
-            else {
-                echo "No tienes amigos";
-            }
-            ?>
-        </div>
-        
-        <div>
-            <!-- Buscar usuarios -->
-            <form id="searchForm" action="" method="POST">
-                <input type="text" placeholder="Buscar usuarios" name="SearchFriends">
-                <button type="submit" name="search"><span class="material-symbols-rounded">search</span></button>
-            </form>
+                        $photo = $user->getProfilePhoto();
 
-            <div id="results"></div>
-
-            <?php
-                // Procesar formulario de búsqueda
-                if(isset($_POST['search'])) {
-                    $search = $_POST['SearchFriends'];
-                    $search_query = "SELECT username FROM users WHERE username LIKE '%$search%'";
-                    $search_result = $connection->query($search_query);
-                    $rows = $search_result->fetch_all(MYSQLI_ASSOC);
-
-                    if(!empty($rows)) {
-                        echo "<br><br>Resultados de búsqueda:<br>";
-                        foreach ($rows as $row) {
-                            echo $row["username"] . "<br>";
-                        }
-                    } 
-
-                    else {
-                        echo "No se encontraron resultados para '$search'";
+                        echo "<img src=\"$photo\">";
+                        echo '<h3>'.$user->getUsername().'</h3>';
                     }
                 }
             ?>
-        </div>
     </main>
 
     <script src="../resources/js/searchUsers.js"></script>

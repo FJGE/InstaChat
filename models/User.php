@@ -5,12 +5,14 @@
         private $email;
         private $password;
         private $cPassword;
+        private $profilePhoto;
 
-        function __construct($username, $email, $password, $cPassword) {
+        function __construct($username, $email, $password, $cPassword, $profilePhoto) {
             $this->username = $username;
             $this->email = $email;
             $this->password = $password;
             $this->cPassword = $cPassword;
+            $this->profilePhoto = $profilePhoto;
         }
     
         public function getUsername() {
@@ -29,6 +31,10 @@
             return $this->cPassword;
         }
 
+        public function getProfilePhoto() {
+            return $this->profilePhoto;
+        }
+
         public function setUsername($username) {
             $this->username = $username;
         }
@@ -43,6 +49,10 @@
 
         public function setCPassword($cPassword) {
             $this->cPassword = $cPassword;
+        }
+
+        public function setProfilePhoto($profilePhoto) {
+            $this->profilePhoto = $profilePhoto;
         }
     }
 ?>

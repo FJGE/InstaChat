@@ -29,7 +29,7 @@
                 $userID = $user['id'];
 				$userPhoto = $user['profile_picture'];
 
-                echo 'Bienvenido, '.$userPhoto.$username;
+                echo "<img src='$userPhoto'>".$username;
             }
 
             //Mostrar nombre de los amigos del usuario

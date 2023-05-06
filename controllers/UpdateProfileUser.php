@@ -6,7 +6,7 @@
 
     $email = $_SESSION['email'];
 
-    $profilePicture = $_FILES['profile-picture'];
+    $profilePicture = $_FILES['new-photo'];
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
     // Obtener los datos actuales del usuario a través del correo electrónico
@@ -16,38 +16,47 @@
     }
 
     // Actualizar los campos
-    if (isset($_POST['username'])) {
+    if (isset($_POST['username']) && $_POST['username'] != $user->getUsername()) {
         $user->setUsername($_POST['username']);
     }
 
-    if (isset($_POST['password'])) {
+    if (isset($_POST['password']) && $_POST['password'] != '') {
         $user->setPassword($_POST['password']);
+    } 
+    
+    else {
+        $user->setPassword($user->getPassword());
     }
-
-    if (isset($_POST['cpassword'])) {
+    
+    if (isset($_POST['cpassword']) && $_POST['cpassword'] != $user->getCPassword()) {
         $user->setCPassword($_POST['cpassword']);
     }
 
-    if (isset($_FILES['profile_photo'])) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (isset($_FILES['new-photo']) && $_FILES['new-photo']['name'] != "") {
 
         if (in_array($profilePicture['type'], $allowedTypes)) {
+            $profilePicture['name'] = $username;
             $profilePicturePath = "../resources/imgs/user-profiles/{$profilePicture['name']}";
+            $user->setProfilePhoto($profilePicturePath);
             move_uploaded_file($profilePicture['tmp_name'], $profilePicturePath);
-            $profilePhoto = $profilePicture['name'];
+            $profilePicture = $profilePicturePath;
         }
+    } 
+    
+    else {
+        $profilePicture = $user->getprofilePhoto();
     }
 
     // Guardar los cambios en la base de datos
     $username = $user->getUsername();
     $password = $user->getPassword();
     $cpassword = $user->getCPassword();
-    $profilePhoto = isset($profilePhoto) ? $profilePhoto : $user->getProfilePhoto();
 
-    $updateQuery = "UPDATE `users` SET `username` = '$username', `password` = '$password', `cpassword` = '$cpassword', `profile_picture` = '$profilePhoto' WHERE `email` = '$email'";
+    $updateQuery = "UPDATE `users` SET `username` = '$username', `password` = '$password', `cpassword` = '$cpassword', `profile_picture` = '$profilePicture' WHERE `email` = '$email'";
     $updateResult = $connection->query($updateQuery);
 
     // Redirigir a la página de perfil
     header('Location: ../views/profile.php');
+    mysqli_close($connection);
     exit();
 ?>

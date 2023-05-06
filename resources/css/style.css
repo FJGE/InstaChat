@@ -23,9 +23,13 @@
 h1   {font-size: 48px;}
 h2   {font-size: 36px;}
 h3   {font-size: 32px;}
-p, a {font-size: 22px;}
+p, a, label {font-size: 22px;}
 span {color: var(--primary-color);}
 ul {list-style: none;}
+input[type="file"] {
+    color: var(--white);
+}
+
 a {
     text-decoration: none;
     font-weight: bold; color:
@@ -61,6 +65,23 @@ body#home {
 .smallAvatar img, .profileAvatar img {
     border-radius: 50%;
     width: 100%;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--light-gray);
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.error-message {
+    color: red;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 /* ----------------------------- Home Page ------------------------------ */
 #hero {
@@ -162,17 +183,7 @@ footer {
     font-weight: bold;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
-    width: 100%;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 40px;
-    background-color: var(--light-gray);
-    font-size: 18px;
-    margin-bottom: 40px;
-}
-
-input[type="file"] {
+#RegLog input[type="file"] {
     background-color: transparent;
     color: black;
 }
@@ -189,14 +200,7 @@ input[type="file"] {
 }
 
 #RegLog input[type="submit"]:hover {
-    background-color: #5639ac;
-}
-
-.error-message {
-    color: red;
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
+    background-color: var(--primry-color-hover);
 }
 
 /* ----------------------------- Main Page ------------------------------ */

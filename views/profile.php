@@ -40,7 +40,7 @@
                     <label for="Email">Email</label>
                     <input type="email" value="<?php echo $user->getEmail(); ?>" readonly>
                     
-                    <form action="../controllers/UpdateProfileUser.php" method="post" enctype="multipart/form-data">
+                    <form action="../controllers/UpdateProfileController.php" method="post" enctype="multipart/form-data">
                         <label for="username">Username:</label>
                         <input type="text" name="username" value="<?php echo $user->getUsername(); ?>">
     

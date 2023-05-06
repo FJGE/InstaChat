@@ -35,7 +35,6 @@
     if (isset($_FILES['new-photo']) && $_FILES['new-photo']['name'] != "") {
 
         if (in_array($profilePicture['type'], $allowedTypes)) {
-            $profilePicture['name'] = $username;
             $profilePicturePath = "../resources/imgs/user-profiles/{$profilePicture['name']}";
             $user->setProfilePhoto($profilePicturePath);
             move_uploaded_file($profilePicture['tmp_name'], $profilePicturePath);

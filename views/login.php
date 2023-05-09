@@ -15,6 +15,11 @@
                 //Borrar la cookie
                 setcookie("error", "", time() - 3600, "/");
             }
+            if(isset($_COOKIE['success'])) {
+                echo '<p class="error-message">' . $_COOKIE['success'] . '</p>';
+                //Borrar la cookie
+                setcookie("success", "", time() - 3600, "/");
+            }
         ?>
 
         <form action="../controllers/LoginController.php" method="POST">

@@ -83,6 +83,13 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin-bottom: 20px;
     text-align: center;
 }
+
+.success {
+    color: greenyellow;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 /* ----------------------------- Home Page ------------------------------ */
 #hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imgs/hero-bg.jpg");
@@ -204,11 +211,40 @@ footer {
 }
 
 /* ----------------------------- Main Page ------------------------------ */
-.smallAvatar {
-    width: 65px;
-    height: 65px;
+.user-card {
+    display: flex;
+    min-width: 90%;
+    align-items: center;
+    background-color: var(--black);
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
 }
 
+.friend-card {
+    display: flex;
+    min-width: 90%;
+    align-items: center;
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+  
+.smallAvatar {
+    margin-right: 30px;
+}
+  
+.smallAvatar img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 /* ----------------------------- Profile Page ------------------------------ */
 .profileAvatar {
     width: 200px;

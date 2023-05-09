@@ -8,7 +8,7 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cPassword = $_POST['cpassword'];
-    $newUser = new User($username, $email, $password, $cPassword, $profilePicture);
+    $newUser = new User($id, $username, $email, $password, $cPassword, $profilePicture);
 
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
@@ -39,6 +39,7 @@
         $query_insert = "INSERT INTO users (username, email, password, cpassword, profile_picture) VALUES ('$username', '$email', '$password', '$cPassword', '$profilePicturePath')";
         if (mysqli_query($connection, $query_insert)) {
             header("Location: ../views/login.php");
+            createCookie("success", "Enhorabuena crack, te has registrado con exito", "../views/login.php");
         } 
         
         else {

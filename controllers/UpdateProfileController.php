@@ -1,7 +1,7 @@
 <?php
     include_once '../config/connection_db.php';
-    include_once '../models/User.php';
     include_once '../config/functions.php';
+    include_once '../models/User.php';
     session_start();
 
     $email = $_SESSION['email'];
@@ -10,10 +10,7 @@
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
     // Obtener los datos actuales del usuario a través del correo electrónico
-    $obtainUser = $connection->query('SELECT * FROM `users` WHERE `email` = "' . $email . '"');
-    if($userData = $obtainUser->fetch_all(MYSQLI_ASSOC)) {
-        $user = new User($userData[0]['username'], $userData[0]['email'], $userData[0]['password'], $userData[0]['cpassword'], $userData[0]['profile_picture']);
-    }
+    $user = User::getUserData($connection, $email);
 
     // Actualizar los campos
     if (isset($_POST['username']) && $_POST['username'] != $user->getUsername()) {
@@ -33,7 +30,6 @@
     }
 
     if (isset($_FILES['new-photo']) && $_FILES['new-photo']['name'] != "") {
-
         if (in_array($profilePicture['type'], $allowedTypes)) {
             $profilePicturePath = "../resources/imgs/user-profiles/{$profilePicture['name']}";
             $user->setProfilePhoto($profilePicturePath);
@@ -43,7 +39,7 @@
     } 
     
     else {
-        $profilePicture = $user->getprofilePhoto();
+        $profilePicture = $user->getProfilePhoto();
     }
 
     // Guardar los cambios en la base de datos

@@ -1,13 +1,15 @@
 <?php
     class User
     {
+        private $id;
         private $username;
         private $email;
         private $password;
         private $cPassword;
         private $profilePhoto;
 
-        function __construct($username, $email, $password, $cPassword, $profilePhoto) {
+        function __construct($id, $username, $email, $password, $cPassword, $profilePhoto) {
+            $this->id = $id;
             $this->username = $username;
             $this->email = $email;
             $this->password = $password;
@@ -15,6 +17,10 @@
             $this->profilePhoto = $profilePhoto;
         }
     
+        public function getId() {
+            return $this->id;
+        }
+
         public function getUsername() {
             return $this->username;
         }
@@ -39,10 +45,6 @@
             $this->username = $username;
         }
 
-        public function setEmail($email) {
-            $this->email = $email;
-        }
-
         public function setPassword($password) {
             $this->password = $password;
         }
@@ -53,6 +55,14 @@
 
         public function setProfilePhoto($profilePhoto) {
             $this->profilePhoto = $profilePhoto;
+        }
+
+        public static function getUserData($connection, $email) {
+            $obtainUser = $connection->query('SELECT * FROM `users` WHERE `email` = "' . $email . '"');
+            if($userData = $obtainUser->fetch_all(MYSQLI_ASSOC)) {
+                $user = new User($userData[0]['id'], $userData[0]['username'], $userData[0]['email'], $userData[0]['password'], $userData[0]['cpassword'], $userData[0]['profile_picture']);
+                return $user;
+            }
         }
     }
 ?>

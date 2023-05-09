@@ -1,6 +1,8 @@
 <?php 
     include_once '../config/connection_db.php';
     include_once '../models/User.php';
+    include_once '../models/Friend.php';
+    include_once '../models/Post.php';
     include_once '../config/functions.php';
     session_start();
     $email = $_SESSION['email'];
@@ -24,13 +26,35 @@
             <?php
                 //Mostrar el usuario que ha iniciado sesión
                 if(isset($email)) {
-                    ViewProfile($connection, $email, $class = "smallAvatar");
+                    $user = User::getUserData($connection, $email);
+                    $photo = $user->getProfilePhoto();
+                
+                    echo "<div class='user-card'>";
+                    echo "<div class='smallAvatar'><img src=\"$photo\"></div>";
+                    echo '<p><b>'.$user->getUsername().'</b></p>';
+                    echo "</div>";
+
+                    // Mostrar los amigos del usuario
+                    $friendData = Friend::getFriendData($connection, $user->getId());
+
+                    echo "<p>Amigos: </p><br>";
+                    foreach ($friendData as $friend) {
+                        echo "<div class='friend-card'>"; 
+                        echo "<div class='smallAvatar'><img src='" . $friend['profile_picture'] . "'></div>";
+                        echo "<p>".$friend['username']."</p>";
+                        echo "</div>";
+                    }
+                }
+                
+                else {
+                    echo "<p>No has iniciado sesión.</p>";
                 }
             ?>
 
-            <a href="./profile.php">Ver perfil</a>
+            <a href="./profile.php">Editar Perfil</a>
+            <br>
+            <a href="./logout.php">Cerrar sesión</a>
+        </div>
     </main>
-
-    <script src="../resources/js/searchUsers.js"></script>
 </body>
 </html>

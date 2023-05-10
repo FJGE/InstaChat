@@ -90,6 +90,25 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin-bottom: 20px;
     text-align: center;
 }
+
+/* Estilo de la scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+  }
+  
+  /* Estilo del thumb (la barra que se mueve) */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+  
+  /* Estilo del thumb cuando se le da hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
 /* ----------------------------- Home Page ------------------------------ */
 #hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imgs/hero-bg.jpg");
@@ -242,6 +261,7 @@ footer {
 .friend-card {
     background-color: var(--light-gray);
     color: var(--black);
+    margin-right: 10px;
 }
 
 .logout, .edit-profile, .logout span, .edit-profile span {
@@ -274,8 +294,13 @@ footer {
 .chatting {
     background-color: var(--gray);
     border-radius: 15px;
-    margin-left: 20px;
+    margin: 0 20px;
 }
+
+.side-bar, .chatting, .friends {
+    max-height: calc(100vh - 20px); /* Resta el alto de la barra de navegación */
+    overflow-y: auto;
+}  
 /* ----------------------------- Profile Page ------------------------------ */
 .profileAvatar {
     width: 200px;
@@ -308,5 +333,5 @@ footer {
     #about div {text-align: left;}
 
     .grid-columns {grid-template-columns: repeat(2, 48%);}
-    main.grid-columns {grid-template-columns: 20% 80%;}
+    main.grid-columns {grid-template-columns: 15% 70% 15%;}
 }

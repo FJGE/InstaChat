@@ -32,19 +32,6 @@
                     echo "<div class='smallAvatar'><img src=\"$photo\"></div>";
                     echo '<p><b>'.$user->getUsername().'</b></p>';
                     echo "</div>";
-
-                    // Mostrar los amigos del usuario
-                    $friendData = Friend::getFriendData($connection, $user->getId());
-
-                    echo "<div>";
-                    echo "<p>Amigos: </p><br>";
-                    foreach ($friendData as $friend) {
-                        echo "<div class='card friend-card'>"; 
-                        echo "<div class='smallAvatar'><img src='" . $friend['profile_picture'] . "'></div>";
-                        echo "<p>".$friend['username']."</p>";
-                        echo "</div>";
-                    }
-                    echo "</div>";
                 }
                 
                 else {
@@ -74,6 +61,23 @@
 
         <div class="chatting">
 
+        </div>
+
+        <div class="friends">
+            <?php
+                // Mostrar los amigos del usuario
+                $friendData = Friend::getFriendData($connection, $user->getId());
+
+                echo "<div>";
+                echo "<p>Amigos: </p><br>";
+                foreach ($friendData as $friend) {
+                    echo "<div class='card friend-card'>"; 
+                    echo "<div class='smallAvatar'><img src='" . $friend['profile_picture'] . "'></div>";
+                    echo "<p>".$friend['username']."</p>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            ?>
         </div>
     </main>
 </body>

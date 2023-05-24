@@ -2,10 +2,16 @@
     include_once '../config/connection_db.php';
     include_once '../models/User.php';
     include_once '../models/Friend.php';
-    include_once '../models/Post.php';
+    include_once '../models/Conversation.php';
+    include_once '../models/Message.php';
     include_once '../config/functions.php';
     session_start();
     $email = $_SESSION['email'];
+
+    if (!isset($_SESSION['email'])) {
+        header("Location: ../index.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +65,31 @@
             </div>
         </div>
 
-        <div class="chatting">
-
+        <div id="chat-container">
+            <div class="chat-messages">
+                <?php
+                    foreach ($messages as $message) {
+                        echo "<p>" . $message->getMessage() . "</p>";
+                    }
+                ?>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+                <button id="send-button" type="button">Enviar</button>
+            </div>
         </div>
 
+
+
         <div class="friends">
+            <!-- Buscar Usuarios -->
+            <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
+                <input type="text" name="search" placeholder="Buscar amigos...">
+                <button type="submit">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+            </form>
+
             <?php
                 // Mostrar los amigos del usuario
                 $friendData = Friend::getFriendData($connection, $user->getId());
@@ -71,14 +97,38 @@
                 echo "<div>";
                 echo "<p>Amigos: </p><br>";
                 foreach ($friendData as $friend) {
-                    echo "<div class='card friend-card'>"; 
+                    $friendId = $friend['id'];
+                
+                    echo "<a href='chat.php?friendId=$friendId' class='card friend-card' id='$friendId'>";
                     echo "<div class='smallAvatar'><img src='" . $friend['profile_picture'] . "'></div>";
                     echo "<p>".$friend['username']."</p>";
-                    echo "</div>";
+                    echo "</a>";
                 }
                 echo "</div>";
             ?>
         </div>
     </main>
+
+    <script>
+       document.querySelectorAll('.friend-card').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                var friendId = event.currentTarget.id;
+                console.log('ID del amigo: ' + friendId);
+                chat(friendId);
+            });
+        });
+
+        function chat(friendId) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector('.chat-messages').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "chat.php?friendId=" + friendId, true);
+            xhttp.send();
+        }
+    </script>
 </body>
 </html>

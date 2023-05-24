@@ -15,11 +15,11 @@
     <title>InstaChat - Perfil</title>
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
-<body>
+<body id="profile">
     <main>
         <section class="container">
             <div class="grid-columns">
-                <div>
+                <div class="avatar">
                     <?php
                         //Mostrar el usuario que ha iniciado sesión
                         if(isset($email)) {

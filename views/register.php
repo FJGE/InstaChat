@@ -8,20 +8,20 @@
         <link rel="stylesheet" href="../resources/css/style.css">
     </head>
     <body id="RegLog">
-        <?php
-        //Verificar si existe la cookie con el mensaje de error
-        if(isset($_COOKIE['error'])) {
-            echo '<p class="error-message">' . $_COOKIE['error'] . '</p>';
-            //Borrar la cookie
-            setcookie("error", "", time() - 3600, "/");
-        }
-        ?>
-
         <div class="container">
             <section class="grid-columns">
                 <form action="../controllers/RegisterController.php" method="POST" enctype="multipart/form-data">
+                    <?php
+                        //Verificar si existe la cookie con el mensaje de error
+                        if(isset($_COOKIE['error'])) {
+                            echo '<p class="error-message">' . $_COOKIE['error'] . '</p>';
+                            //Borrar la cookie
+                            setcookie("error", "", time() - 3600, "/");
+                        }
+                    ?>
+
                     <label for="profile-picture">Foto de perfil:</label>
-                    <input type="file" id="profile-picture" name="profile-picture">
+                    <input type="file" id="profile-picture" name="profile-picture"><br />
 
                     <label for="username">Nombre de usuario:</label>
                     <input type="text" id="username" name="username" required /><br />
@@ -37,6 +37,8 @@
         
                     <input type="submit" value="Registrarse" name="submit" />
                 </form>
+
+                <img src="../resources/imgs/register-img.jpg" alt="Chico usando las redes sociales desde el movil" width="100%">
             </section>
         </div>
     </body>

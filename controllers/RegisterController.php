@@ -23,7 +23,7 @@
     }
 
     if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['cpassword'])) {
-        $getEmail = $connection->query("SELECT * FROM users WHERE email = '$email'");
+        $getEmail = $connection->query("SELECT email FROM users WHERE email = '$email'");
         if ($getEmail->fetch_all()) {
             header("Location: ../views/register.php");
             createCookie("error", "El correo ya está registrado", "../views/register.php");

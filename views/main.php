@@ -45,6 +45,7 @@
                 }
             ?>
 
+            <!-- Botones para editar perfil y finalizar sesión -->
             <div>
                 <a href="./profile.php" class="card edit-profile">
                     <div>
@@ -65,6 +66,7 @@
             </div>
         </div>
 
+        <!-- Mostrar chat cuando se hace click en un amigo -->
         <div id="chat-container">
             <div class="chat-messages">
                 <?php
@@ -79,16 +81,15 @@
             </div>
         </div>
 
-
-
         <div class="friends">
             <!-- Buscar Usuarios -->
-            <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
+
+            <!-- <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
                 <input type="text" name="search" placeholder="Buscar amigos...">
                 <button type="submit">
                     <span class="material-symbols-outlined">search</span>
                 </button>
-            </form>
+            </form> -->
 
             <?php
                 // Mostrar los amigos del usuario
@@ -110,6 +111,7 @@
     </main>
 
     <script>
+        // Funcion para que cuando se haga click al amigo recoja el id y muestre el chat
        document.querySelectorAll('.friend-card').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();

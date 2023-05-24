@@ -24,14 +24,10 @@
 
         public static function getConversation($connection, $user1Id, $user2Id) {
             // Query para obtener la conversación entre dos usuarios
-            $query = "SELECT conversations.id, conversations.user1_id, conversations.user2_id
-                      FROM conversations
-                      INNER JOIN users AS user1 ON conversations.user1_id = user1.id
-                      INNER JOIN users AS user2 ON conversations.user2_id = user2.id
-                      WHERE (conversations.user1_id = $user1Id AND conversations.user2_id = $user2Id)
-                      OR (conversations.user1_id = $user2Id AND conversations.user2_id = $user1Id)";
+            $query = "SELECT * FROM conversations WHERE (user1_id = $user1Id AND user2_id = $user2Id) OR (user1_id = $user2Id AND user2_id = $user1Id)";
             $result = $connection->query($query);
         
+            // Obtener los datos de la conversacion
             if ($result && $result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $conversation = new Conversation($row['id'], $row['user1_id'], $row['user2_id']);

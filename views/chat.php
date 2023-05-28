@@ -2,7 +2,7 @@
     include_once '../config/connection_db.php';
     include_once '../models/Conversation.php';
     include_once '../models/Message.php';
-    include_once '../models/User.php';  // Agrega la inclusión de User.php si aún no está incluido
+    include_once '../models/User.php';
 
     $friendId = $_GET['friendId'];  // Obtener el ID del amigo con el que se está abriendo el chat
 

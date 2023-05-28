@@ -48,20 +48,12 @@
             <!-- Botones para editar perfil y finalizar sesión -->
             <div>
                 <a href="./profile.php" class="card edit-profile">
-                    <div>
-                        <span class="material-symbols-outlined">face_retouching_natural</span>
-                    </div>
-                    <div>
-                        Editar Perfil
-                    </div>
+                    <div><span class="material-symbols-outlined">face_retouching_natural</span></div>
+                    <div>Editar Perfil</div>
                 </a>
                 <a href="./logout.php" class="card logout">
-                    <div>
-                        <span class="material-symbols-outlined">logout</span>
-                    </div>
-                    <div>
-                        <p>Cerrar sesión</p>
-                    </div>
+                    <div><span class="material-symbols-outlined">logout</span></div>
+                    <div><p>Cerrar sesión</p></div>
                 </a>
             </div>
         </div>
@@ -83,13 +75,12 @@
 
         <div class="friends">
             <!-- Buscar Usuarios -->
-
-            <!-- <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
+            <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
                 <input type="text" name="search" placeholder="Buscar amigos...">
                 <button type="submit">
                     <span class="material-symbols-outlined">search</span>
                 </button>
-            </form> -->
+            </form>
 
             <?php
                 // Mostrar los amigos del usuario
@@ -100,7 +91,7 @@
                 foreach ($friendData as $friend) {
                     $friendId = $friend['id'];
                 
-                    echo "<a href='chat.php?friendId=$friendId' class='card friend-card' id='$friendId'>";
+                    echo "<a href='chat.php?friendId=$friendId' class='card friend-card' id='$friendId' data-id='$friendId'>";
                     echo "<div class='smallAvatar'><img src='" . $friend['profile_picture'] . "'></div>";
                     echo "<p>".$friend['username']."</p>";
                     echo "</a>";
@@ -110,27 +101,7 @@
         </div>
     </main>
 
-    <script>
-        // Funcion para que cuando se haga click al amigo recoja el id y muestre el chat
-       document.querySelectorAll('.friend-card').forEach(item => {
-            item.addEventListener('click', event => {
-                event.preventDefault();
-                var friendId = event.currentTarget.id;
-                console.log('ID del amigo: ' + friendId);
-                chat(friendId);
-            });
-        });
-
-        function chat(friendId) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.querySelector('.chat-messages').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "chat.php?friendId=" + friendId, true);
-            xhttp.send();
-        }
-    </script>
+    <script src="../resources/js/chat.js"></script>
+    <script src="../resources/js/send-message.js"></script>
 </body>
 </html>

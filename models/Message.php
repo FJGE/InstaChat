@@ -34,12 +34,6 @@
             return $this->sentAt;
         }
         
-        public function save($connection) {
-            // Query para guardar el mensaje en la base de datos
-            $query = "INSERT INTO messages (conversation_id, sender_id, message) VALUES ($this->conversationId, $this->senderId, '$this->message')";
-            $connection->query($query);
-        }
-        
         public static function getMessages($connection, $conversationId) {
             // Query para obtener los mensajes de una conversación
             $query = "SELECT * FROM messages WHERE conversation_id = $conversationId ORDER BY sent_at ASC";
@@ -55,5 +49,14 @@
             
             return $messages;
         }
-}
+
+        public function saveMessage($connection) {
+            // Obtiene la fecha y hora actual en formato MySQL
+            $sentAt = date('Y-m-d H:i:s');
+        
+            // Query para guardar el mensaje en la base de datos
+            $query = "INSERT INTO messages (conversation_id, sender_id, message, sent_at) VALUES ($this->conversationId, $this->senderId, '$this->message', '$sentAt')";
+            $connection->query($query);
+        }      
+    }
 ?>

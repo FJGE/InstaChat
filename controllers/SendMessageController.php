@@ -2,6 +2,8 @@
     include_once '../config/connection_db.php';
     include_once '../models/Message.php';
     include_once '../models/Conversation.php';
+    include_once '../models/User.php';
+
     session_start();
     
     

@@ -232,7 +232,7 @@ body#RegLog {
 #RegLog input[type="file"] {
     background-color: transparent;
     color: var(--black);
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 #RegLog input[type="submit"] {
@@ -243,7 +243,6 @@ body#RegLog {
     border-radius: 50px;
     font-size: 18px;
     cursor: pointer;
-    margin-top: 30px;
 }
 
 #RegLog input[type="submit"]:hover {

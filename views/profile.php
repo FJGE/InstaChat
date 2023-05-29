@@ -43,26 +43,35 @@
                     if($userData = $obtainUser->fetch_all(MYSQLI_ASSOC)) {
                         $user = new User($userData[0]['id'], $userData[0]['username'], $userData[0]['email'], $userData[0]['password'], $userData[0]['cpassword'], $userData[0]['profile_picture']);
                     }
+
+                    if (isset($_COOKIE['error'])) {
+                        $error = $_COOKIE['error'];
+                        setcookie('error', '', time() - 3600, '/'); // Eliminar la cookie
+                    }
                 ?>
 
                 <div>
-                    <label for="Email">Email</label>
+                    <?php if (isset($error)) : ?>
+                        <div class="error-message"><?php echo $error; ?></div>
+                    <?php endif; ?>
+                
+                    <label for="Email">Correo Electronico</label>
                     <input type="email" value="<?php echo $user->getEmail(); ?>" readonly>
                     
                     <form action="../controllers/UpdateProfileController.php" method="post" enctype="multipart/form-data">
-                        <label for="username">Username:</label>
+                        <label for="username">Nombre de Usuario:</label>
                         <input type="text" name="username" value="<?php echo $user->getUsername(); ?>">
     
-                        <label for="password">New Password:</label>
-                        <input type="password" name="password">
+                        <label for="password">Nueva Contraseña:</label>
+                        <input type="password" name="password" min="8" max="16">
     
-                        <label for="cpassword">Confirm New Password:</label>
-                        <input type="password" name="cpassword">
+                        <label for="cpassword">Confirmación nueva contraseña:</label>
+                        <input type="password" name="cpassword" min="8" max="16">
     
-                        <label for="new-photo">New Profile Photo:</label>
+                        <label for="new-photo">Nueva foto de perfil:</label>
                         <input type="file" name="new-photo">
                     
-                        <button type="submit">Update Profile</button>
+                        <button type="submit">Actualizar perfil</button>
                     </form>
                 </div>
             </div>

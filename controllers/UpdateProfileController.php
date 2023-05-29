@@ -17,16 +17,19 @@
         $user->setUsername($_POST['username']);
     }
 
-    if (isset($_POST['password']) && $_POST['password'] != '') {
+    if (isset($_POST['password']) && $_POST['password'] != '' && $_POST['password'] != $user->getPassword()) {
         $user->setPassword($_POST['password']);
-    } 
-    
-    else {
-        $user->setPassword($user->getPassword());
     }
     
-    if (isset($_POST['cpassword']) && $_POST['cpassword'] != $user->getCPassword()) {
+    if (isset($_POST['cpassword']) && $_POST['cpassword'] != '' && $_POST['cpassword'] != $user->getCPassword()) {
         $user->setCPassword($_POST['cpassword']);
+    }
+
+    if ($_POST['password'] != $_POST['cpassword']) {
+        // Las contraseñas no coinciden, mostrar un error
+        $error = "Las contraseñas no coinciden";
+        createCookie("error", $error, "Location: ../views/profile.php");
+        exit();
     }
 
     if (isset($_FILES['new-photo']) && $_FILES['new-photo']['name'] != "") {

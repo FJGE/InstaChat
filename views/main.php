@@ -5,13 +5,15 @@
     include_once '../models/Conversation.php';
     include_once '../models/Message.php';
     include_once '../config/functions.php';
+
     session_start();
-    $email = $_SESSION['email'];
 
     if (!isset($_SESSION['email'])) {
         header("Location: ../index.php");
         exit;
     }
+
+    $email = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>

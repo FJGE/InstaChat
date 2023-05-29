@@ -17,6 +17,8 @@
 
     // Mostrar los mensajes en el contenedor del chat de amigo
     foreach ($messages as $message) {
-        echo "<p>" . $message->getMessage() . "</p>";
+        $senderId = $message->getSenderId();
+        $additionalClass = ($senderId == $user->getId()) ? 'sent' : 'received';  // Agregar la clase 'sent' si el mensaje fue enviado por el usuario actual, de lo contrario, agregar la clase 'received'
+        echo "<p class='$additionalClass'>" . $message->getMessage() . "</p>";
     }
 ?>

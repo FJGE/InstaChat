@@ -289,6 +289,10 @@ body#RegLog {
     margin-right: 10px;
 }
 
+.friend-card:hover {
+    background-color: var(--primary-color);
+}
+
 .logout, .edit-profile, .logout span, .edit-profile span {
     display: flex;
     justify-content: center;
@@ -362,7 +366,23 @@ body#RegLog {
     overflow-y: auto;
 }
 
+p.sent {
+    background-color: var(--primary-color);
+    border-radius: 12px;
+    padding: 10px 15px;
+    max-width: 70%;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
 
+  p.received {
+    background-color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 10px 15px;
+    max-width: 70%;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
 /* ----------------------------- Profile Page ------------------------------ */
 body#profile {
     height: 100vh;

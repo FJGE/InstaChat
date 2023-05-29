@@ -28,5 +28,18 @@
             $friendData = $obtainFriendsUser->fetch_all(MYSQLI_ASSOC);
             return $friendData;
         }
+
+        public static function addFriend($connection, $user_1, $user_2) {
+            $query = "INSERT INTO friends (user_1, user_2) VALUES ($user_1, $user_2)";
+            $result = $connection->query($query);
+    
+            if ($result) {
+                return true; // El amigo se agregó correctamente
+            } 
+            
+            else {
+                return false; // Hubo un error al agregar el amigo
+            }
+        }
     }
 ?>

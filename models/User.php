@@ -64,5 +64,22 @@
                 return $user;
             }
         }
+
+        public static function searchUsers($connection, $search) {
+            $search = mysqli_real_escape_string($connection, $search);
+            $query = "SELECT id, username, email, password, cpassword, profile_picture FROM `users` WHERE `username` LIKE '%$search%'";
+            $result = $connection->query($query);
+        
+            $users = array();
+        
+            if ($result && $result->num_rows > 0) {
+                while ($userData = $result->fetch_assoc()) {
+                    $user = new User($userData['id'], $userData['username'], $userData['email'], $userData['password'], $userData['cpassword'], $userData['profile_picture']);
+                    $users[] = $user;
+                }
+            }
+        
+            return $users;
+        }        
     }
 ?>

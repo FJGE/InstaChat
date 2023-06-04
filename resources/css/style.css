@@ -331,6 +331,9 @@ body#RegLog {
     height: 80vh;
     max-height: 80vh;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .chat-input {
@@ -347,6 +350,7 @@ body#RegLog {
     background-color: var(--light-gray);
     font-size: 18px;
     margin-right: 10px;
+    word-wrap: break-word;
 }
 
 .chat-input button {
@@ -366,22 +370,40 @@ body#RegLog {
     overflow-y: auto;
 }
 
-p.sent {
+.chat-messages p.sent {
     background-color: var(--primary-color);
     border-radius: 12px;
     padding: 10px 15px;
     max-width: 70%;
-    margin-bottom: 10px;
     word-wrap: break-word;
+    align-self: flex-end;
 }
 
-  p.received {
+.chat-messages p.received {
     background-color: var(--dark-gray);
     border-radius: 12px;
     padding: 10px 15px;
     max-width: 70%;
-    margin-bottom: 10px;
     word-wrap: break-word;
+    align-self: flex-start;
+}
+
+.chat-messages p.sentDate {
+    margin-bottom: 20px;
+    align-self: flex-end;
+}
+
+.chat-messages p.receivedDate {
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+.seach-form {
+    display: flex;
+}
+
+.search-button {
+    justify-self: end;
 }
 /* ----------------------------- Profile Page ------------------------------ */
 body#profile {

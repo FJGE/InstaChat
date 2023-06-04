@@ -34,6 +34,7 @@
             $result = $connection->query($query);
     
             if ($result) {
+                $connection->query("INSERT INTO friends (user_1, user_2) VALUES ($user_2, $user_1)");
                 return true; // El amigo se agregó correctamente
             } 
             

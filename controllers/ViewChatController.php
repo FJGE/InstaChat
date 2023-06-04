@@ -19,6 +19,8 @@
     foreach ($messages as $message) {
         $senderId = $message->getSenderId();
         $additionalClass = ($senderId == $user->getId()) ? 'sent' : 'received';  // Agregar la clase 'sent' si el mensaje fue enviado por el usuario actual, de lo contrario, agregar la clase 'received'
+        $additionalClassDate = ($senderId == $user->getId()) ? 'sentDate' : 'receivedDate';
         echo "<p class='$additionalClass'>" . $message->getMessage() . "</p>";
+        echo "<p class='$additionalClassDate'><small>". $message->getSentAt() ."</small></p>";
     }
 ?>

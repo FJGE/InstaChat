@@ -66,6 +66,7 @@
                 <?php
                     foreach ($messages as $message) {
                         echo "<p>" . $message->getMessage() . "</p>";
+                        echo "<p><small>". $message->getSentAt() ."</small></p>";
                     }
                 ?>
             </div>
@@ -77,9 +78,9 @@
 
         <div class="friends">
             <!-- Buscar Usuarios -->
-            <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data">
+            <form method="GET" action="../controllers/SearchUsersController.php" enctype="multipart/form-data" class="search-form">
                 <input type="text" name="search" placeholder="Buscar amigos...">
-                <button type="submit">
+                <button type="submit" class="search-button">
                     <span class="material-symbols-outlined">search</span>
                 </button>
             </form>

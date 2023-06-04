@@ -24,6 +24,6 @@ function chat(friendId) {
             document.querySelector('.chat-messages').innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "chat.php?friendId=" + friendId, true);
+    xhttp.open("GET", "../controllers/ViewChatController.php?friendId=" + friendId, true);
     xhttp.send();
 }

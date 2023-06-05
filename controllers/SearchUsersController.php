@@ -10,10 +10,6 @@
 ?>
 
 <?php
-    include_once '../config/connection_db.php';
-    include_once '../models/User.php';
-    include_once '../models/Friend.php';
-
     session_start();
 
     if (!isset($_SESSION['email'])) {

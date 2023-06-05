@@ -45,21 +45,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="user-list">
-        <?php
-        if (isset($users)) {
-            echo "<div>";
-            echo "<p>Usuarios encontrados:</p><br>";
-            foreach ($users as $user) {
-                $friendId = $user->getId();
-                echo "<a href='./AddFriendController.php?friendId=$friendId' class='card friend-card'>";
-                echo "<div class='smallAvatar'><img src='" . $user->getProfilePhoto() . "'></div>";
-                echo "<p>" . $user->getUsername() . "</p>";
-                echo "</a>";
+    <div class="container">
+        <div class="user-list">
+            <?php
+            if (isset($users)) {
+                echo "<div>";
+                echo "<p>Usuarios encontrados:</p><br>";
+                foreach ($users as $user) {
+                    $friendId = $user->getId();
+                    echo "<a href='./AddFriendController.php?friendId=$friendId' class='card friend-card'>";
+                    echo "<div class='smallAvatar'><img src='" . $user->getProfilePhoto() . "'></div>";
+                    echo "<p>" . $user->getUsername() . "</p>";
+                    echo "</a>";
+                }
+                echo "</div>";
             }
-            echo "</div>";
-        }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 </html>

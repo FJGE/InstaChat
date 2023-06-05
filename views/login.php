@@ -29,7 +29,7 @@
                     <input type="email" id="email" name="email" placeholder="ejemplo@gmail.com" required /><br />
 
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Contraseña" required min="8" max="16"/><br />
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required minlength="8" maxlength="16"/><br />
 
                     <input type="submit" value="Iniciar Sesión" name="submit" />
                 </form>

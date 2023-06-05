@@ -64,9 +64,14 @@
         <div id="chat-container">
             <div class="chat-messages">
                 <?php
-                    foreach ($messages as $message) {
-                        echo "<p>" . $message->getMessage() . "</p>";
-                        echo "<p><small>". $message->getSentAt() ."</small></p>";
+                    // Mostrar mensaje de error si no se ha seleccionado ningún chat
+                    if (!isset($_GET['friendId'])) {
+                        echo "<p class='error-message'>No se ha seleccionado ningún chat.</p>";
+                    } else {
+                        foreach ($messages as $message) {
+                            echo "<p>" . $message->getMessage() . "</p>";
+                            echo "<p><small>". $message->getSentAt() ."</small></p>";
+                        }
                     }
                 ?>
             </div>

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     include_once '../config/connection_db.php';
     include_once '../models/Friend.php';
     include_once '../models/User.php';
@@ -23,13 +24,14 @@
         if ($added) {
             // Amigo agregado correctamente
             echo "Friend added successfully";
-            header("Location: ../views/main.php");
+            header("refresh:5;url=../views/main.php");
         } 
         
         else {
             // Error al agregar amigo
             echo "Error adding friend";
-            header("Location: ../views/main.php");
+            header("refresh:5;url=../views/main.php");
         }
     }
+    ob_end_flush();
 ?>

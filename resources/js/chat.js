@@ -22,6 +22,12 @@ function chat(friendId) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.querySelector('.chat-messages').innerHTML = this.responseText;
+            
+            // Eliminar el mensaje de error si existe
+            var errorMessage = document.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
         }
     };
     xhttp.open("GET", "../controllers/ViewChatController.php?friendId=" + friendId, true);

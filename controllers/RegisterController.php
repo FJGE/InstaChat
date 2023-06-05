@@ -39,7 +39,7 @@
         $query_insert = "INSERT INTO users (username, email, password, cpassword, profile_picture) VALUES ('$username', '$email', '$password', '$cPassword', '$profilePicturePath')";
         if (mysqli_query($connection, $query_insert)) {
             header("Location: ../views/login.php");
-            createCookie("success", "Enhorabuena crack, te has registrado con exito", "../views/login.php");
+            createCookie("success", "Enhorabuena, te has registrado con exito", "../views/login.php");
         } 
         
         else {

@@ -56,7 +56,7 @@
             echo "<p>Usuarios encontrados:</p><br>";
             foreach ($users as $user) {
                 $friendId = $user->getId();
-                echo "<a href='../controllers/AddFriendController.php?friendId=$friendId' class='card friend-card'>";
+                echo "<a href='./AddFriendController.php?friendId=$friendId' class='card friend-card'>";
                 echo "<div class='smallAvatar'><img src='" . $user->getProfilePhoto() . "'></div>";
                 echo "<p>" . $user->getUsername() . "</p>";
                 echo "</a>";

@@ -30,10 +30,10 @@
                     <input type="email" id="email" name="email" required /><br />
         
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required  min="8" max="16"/><br />
+                    <input type="password" id="password" name="password" required  minlength="8" maxlength="16"/><br />
         
                     <label for="cpassword">Confirmar contraseña:</label>
-                    <input type="password" id="cpassword" name="cpassword" required  min="8" max="16"/><br />
+                    <input type="password" id="cpassword" name="cpassword" required  minlength="8" maxlength="16"/><br />
         
                     <input type="submit" value="Registrarse" name="submit" />
                 </form>

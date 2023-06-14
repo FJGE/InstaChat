@@ -18,19 +18,36 @@
         $friendId = $_GET['friendId'];
         $userId = $user->getId();
 
-        // Agregar como amigo
-        $added = Friend::addFriend($connection, $userId, $friendId);
+        // Verificar si el usuario ya es tu amigo
+        $friendData = Friend::getFriendData($connection, $userId);
+        $isFriend = false;
+        foreach ($friendData as $friend) {
+            if ($friend['id'] == $friendId) {
+                $isFriend = true;
+                break;
+            }
+        }
 
-        if ($added) {
-            // Amigo agregado correctamente
-            echo "Friend added successfully";
+        if ($isFriend) {
+            // El usuario ya es tu amigo
+            echo "El usuario ya es tu amigo";
             header("refresh:5;url=../views/main.php");
-        } 
-        
-        else {
-            // Error al agregar amigo
-            echo "Error adding friend";
-            header("refresh:5;url=../views/main.php");
+            exit;
+        } else {
+            // Agregar como amigo
+            $added = Friend::addFriend($connection, $userId, $friendId);
+
+            if ($added) {
+                // Amigo agregado correctamente
+                echo "Amigo agregado exitosamente";
+                header("refresh:5;url=../views/main.php");
+                exit;
+            } else {
+                // Error al agregar amigo
+                echo "Error al agregar amigo";
+                header("refresh:5;url=../views/main.php");
+                exit;
+            }
         }
     }
     ob_end_flush();
